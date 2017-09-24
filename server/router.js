@@ -26,10 +26,9 @@ function createToken (body) {
 
 module.exports = app => {
     app.use('/assets', express.static('./client/public'));
-
     app.use('/public/js', express.static('./node_modules/bootstrap/dist/js')); // redirect bootstrap JS
     app.use('/public/js', express.static('./node_modules/jquery/dist')); // redirect JS jQuery
-    // app.use('/public/js', express.static('./node_modules/ajax/lib')); // redirect AJAX
+    app.use('/public/js', express.static('./node_modules/ajax/lib')); // redirect AJAX
     app.use('/public/css', express.static('./node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
     app.get('/', checkAuth, (req, res) => {
