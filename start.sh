@@ -9,5 +9,6 @@ if [ $int -ne 1 ];
 then
     pkill node
 fi
-npm start >> system.log 2>&1 &
+/usr/local/bin/npm install > /dev/null 2>&1
+/usr/local/bin/npm start >> system.log 2>&1 &
 
