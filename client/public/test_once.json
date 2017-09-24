@@ -1,0 +1,9 @@
+[
+  {
+    "_id" : 1,
+    "name" : "Discovery Local scan",
+    "description" : "Discovery Local scan",
+    "default" : 5,
+    "value" : "Local/Fileshare scan"
+  }
+]

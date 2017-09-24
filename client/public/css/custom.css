@@ -1,0 +1,76 @@
+.user-login-name {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    padding: 15px;
+}
+
+.user-login-name span {
+    font-weight: bold;
+}
+.current-time {
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    padding: 15px;
+}
+
+.logo {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    padding: 15px;
+}
+
+.nav-tabs li a {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    padding: 15px;
+}
+
+body {
+    /*background: gainsboro;*/
+    background: rgba(161,156,224,1);
+    background: -moz-linear-gradient(45deg, rgba(161,156,224,1) 0%, rgba(158,222,155,1) 28%, rgba(161,156,224,1) 54%, rgba(201,222,155,1) 79%, rgba(217,209,240,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(161,156,224,1)), color-stop(28%, rgba(158,222,155,1)), color-stop(54%, rgba(161,156,224,1)), color-stop(79%, rgba(201,222,155,1)), color-stop(100%, rgba(217,209,240,1)));
+    background: -webkit-linear-gradient(45deg, rgba(161,156,224,1) 0%, rgba(158,222,155,1) 28%, rgba(161,156,224,1) 54%, rgba(201,222,155,1) 79%, rgba(217,209,240,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(161,156,224,1) 0%, rgba(158,222,155,1) 28%, rgba(161,156,224,1) 54%, rgba(201,222,155,1) 79%, rgba(217,209,240,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(161,156,224,1) 0%, rgba(158,222,155,1) 28%, rgba(161,156,224,1) 54%, rgba(201,222,155,1) 79%, rgba(217,209,240,1) 100%);
+    background: linear-gradient(45deg, rgba(161,156,224,1) 0%, rgba(158,222,155,1) 28%, rgba(161,156,224,1) 54%, rgba(201,222,155,1) 79%, rgba(217,209,240,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a19ce0', endColorstr='#d9d1f0', GradientType=1 );
+}
+
+.list-name {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+.function-title {
+    /*text-align: center;*/
+    padding: 15px;
+    margin-bottom: 0;
+    font-size: 21px;
+}
+.global-menu-item {
+    margin-bottom: 0;
+}
+
+.btn {
+    width: 150px;
+}
+
+.btn-center {
+    text-align: center;
+}
+
+.list-group-item.active {
+    background: #C9DE9B;
+    color: black;
+    border-color: transparent;
+}
+
+.payment-form {
+    background: #C9DE9B;
+}
+
+.list-group-item {
+    background: #C9DE9B;
+}

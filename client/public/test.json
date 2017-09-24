@@ -1,0 +1,52 @@
+[
+  {
+    "_id" : 1,
+    "value" : "Local/Fileshare scan",
+    "name" : "Discovery Local scan"
+  },
+  {
+    "_id" : 2,
+    "value" : "Outlook scan",
+    "name" : "Discovery Outlook scan"
+  },
+  {
+    "_id" : 3,
+    "value" : "Network scan",
+    "name" : "Discovery Network scan"
+  },
+  {
+    "_id" : 4,
+    "value" : "Exchange scan",
+    "name" : "Discovery Exchange scan"
+  },
+  {
+    "_id" : 5,
+    "value" : "Database scan",
+    "name" : "Discovery Database scan"
+  },
+  {
+    "_id" : 6,
+    "value" : "SharePoint scan",
+    "name" : "Discovery SharePoint scan"
+  },
+  {
+    "_id" : 7,
+    "value" : "Fileshare scan",
+    "name" : "Discovery Fileshare scan"
+  },
+  {
+    "_id" : 8,
+    "value" : "Application Control",
+    "name" : "Application Control"
+  },
+  {
+    "_id" : 9,
+    "value" : "Inspector",
+    "name" : "Inspector"
+  },
+  {
+    "_id" : 10,
+    "value" : "OCR",
+    "name" : "OCR Intergration"
+  }
+]
