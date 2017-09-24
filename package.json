@@ -1,17 +1,21 @@
 {
-  "name": "chatik",
-  "version": "1.0.0",
-  "description": "NodeJS chat",
+  "name": "LMT",
+  "version": "0.0.1",
+  "description": "License Management Tool",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
   },
   "keywords": [
-    "chat",
-    "socket.io",
-    "express"
+    "License",
+    "Generator"
   ],
-  "author": "Yurii Chikhrai",
+  "author": "Zimin Aleksey",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CanyonD/LMT.git"
+  },
   "license": "ISC",
   "dependencies": {
     "ajax": "0.0.4",
