@@ -41,6 +41,12 @@ module.exports = app => {
             current_time: new Date()
         });
     });
+    app.get('/page2', (req, res) => {
+        res.render('page2.html', {
+            username: 'Test admin',
+            current_time: new Date()
+        });
+    });
 
     app.post('/login', async (req, res) => {
         try {

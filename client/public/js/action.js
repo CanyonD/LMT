@@ -39,12 +39,19 @@ $(document).ready(function () {
                 url: '/assets/test_once.json',
                 dataType:'json',
                 success: function(values){
-                    var form_data = {};
-                    form_data["name"] = $('.payment-form input[name="name"]').values.name;
-                    form_data["description"] = $('.payment-form input[name="description"]').values.description;
-                    form_data["value"] = $('.payment-form input[name="value"]').values.value;
-                    form_data["default_value"] = parseFloat($('.payment-form input[name="default_value"]').val()).toFixed(2);
+                    $('input#name').val( values[0].name );
+                    $('input#description').val( values[0].description );
+                    $('input#value').val( values[0].value );
+                    $('input#default_value').val( parseInt(values[0].default) );
 
+                    // var form_data = {};
+                    // form_data["name"] = values[0].name;
+                    // form_data["description"] = values[0].description;
+                    // form_data["value"] = values[0].value;
+                    // form_data["default_value"] = values[0].default_value;
+                    // $.each(form_data, function( type, value ) {
+                    //     $('input#'+type).val(value);
+                    // });
                 }
             });
         }
