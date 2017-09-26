@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "/usr/local/bin/node /opt/LMT/server/server.js"
+    "start": "/usr/local/bin/node /opt/LMT/server/server.js",
+    "full_start": "START /B mongod && node server/server.js"
   },
   "keywords": [
     "License",

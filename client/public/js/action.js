@@ -59,31 +59,17 @@ $(document).ready(function () {
 
         var jsonData = JSON.stringify(values);
 
-        if ( !isNaN(values['_id']) )
+        if ( !isNaN(values['_id']) ) {
             $.ajax({
-                url: '/api/v1/functions/' + id,
+                url: '/api/v1/functions/' + values['_id'],
                 method: "PUT",
                 contentType: "application/json; charset=utf-8;",
                 dataType: "json",
                 data: jsonData,
-                success: function(values){
+                success: function (values) {
                     console.log(values);
                 }
             });
-
-        // var form_data = {};
-        // form_data["concept"] = $('.payment-form input[name="concept"]').val();
-        // form_data["description"] = $('.payment-form input[name="description"]').val();
-        // form_data["amount"] = parseFloat($('.payment-form input[name="amount"]').val()).toFixed(2);
-        // form_data["status"] = $('.payment-form #status option:selected').text();
-        // form_data["date"] = $('.payment-form input[name="date"]').val();
-        // form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
-        // var row = $('<tr></tr>');
-        // $.each(form_data, function( type, value ) {
-        //     $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
-        // });
-        // $('.preview-table > tbody:last').append(row);
-        // calc_total();
+        }
     });
-
 });
