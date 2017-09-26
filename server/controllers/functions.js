@@ -65,18 +65,15 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    // logController.route(req, res);
-    console.log(`update ${req.params.id}`);
-    console.log(`update ${req.body.name} ${req.body.description} ${req.body.value} ${req.body.default}`);
+    let values = {
+        name: req.body.name,
+        description: req.body.description,
+        value: req.body.value,
+        default: req.body.default
+    };
     Functions.update(
-        req.params.id,
-        {
-            _id: req.params.id,
-            name: req.body.name,
-            description: req.body.description,
-            value: req.body.value,
-            default: req.body.default
-        },
+        parseInt(req.params.id),
+        values,
         (err, result) => {
             if (err) {
                 // log.error(err);

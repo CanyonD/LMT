@@ -62,8 +62,8 @@ $(document).ready(function () {
             $.ajax({
                 url: '/api/v1/functions/' + values['_id'],
                 method: "PUT",
-                contentType: "application/json; charset=utf-8;",
-                dataType: "json",
+                contentType: "application/json",
+                // dataType: "json",
                 data: jsonData,
                 success: (values) => {
                     console.log(values);
