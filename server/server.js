@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const port = 8080;
 
+const db = require('./db');
+
 const passport = require('passport');
 const { Strategy } = require('passport-jwt');
 
@@ -29,6 +31,8 @@ nunjucks.configure('./client/views', {
     express: app
 });
 
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -41,6 +45,13 @@ require('./router')(app);
 
 require('./sockets')(io);
 
-server.listen(port, () => {
-    console.log('Server started on port ' + port + '...');
+db.connect('mongodb://localhost:27017/lmt', function(err) {
+    if (err) {
+        console.log(err);
+        return;
+        // return logController.error(err);
+    }
+    server.listen(port, () => {
+        console.log('Server started on port ' + port + '...');
+    });
 });

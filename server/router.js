@@ -8,6 +8,8 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
+const functionsController = require('./controllers/functions');
+
 function checkAuth (req, res, next) {
     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
         if(jwtError != void(0) || err != void(0)) return res.render('index.html', { error: err || jwtError});
@@ -93,4 +95,10 @@ module.exports = app => {
         res.clearCookie('token');
         res.status(200).send({message: "Logout success."});
     })
+
+    app.get('/api/v1/functions', functionsController.all);
+    app.post('/api/v1/functions', functionsController.create);
+    app.get('/api/v1/functions/:id', functionsController.findById);
+    app.put('/api/v1/functions/:id', functionsController.update);
+    app.delete('/api/v1/functions/:id', functionsController.delete);
 };

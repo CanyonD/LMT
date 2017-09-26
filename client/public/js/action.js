@@ -12,7 +12,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-        url: '/assets/test.json',
+        url: '/api/v1/functions',
         dataType:'json',
         success: function(names){
             tmpValues = names;
@@ -34,15 +34,18 @@ $(document).ready(function () {
         }
         id = id.split('functions-list-id-')[1];
         if (id) {
-            console.log( id );
+            // console.log( id );
             $.ajax({
-                url: '/assets/test_once.json',
+                url: '/api/v1/functions/' + id,
                 dataType:'json',
                 success: function(values){
-                    $('input#name').val( values[0].name );
-                    $('input#description').val( values[0].description );
-                    $('input#value').val( values[0].value );
-                    $('input#default_value').val( parseInt(values[0].default) );
+
+                    console.log(values);
+
+                    $('input#name').val( values.name );
+                    $('input#description').val( values.description );
+                    $('input#value').val( values.value );
+                    $('input#default_value').val( parseInt(values.default) );
 
                     // var form_data = {};
                     // form_data["name"] = values[0].name;
