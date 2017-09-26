@@ -30,7 +30,7 @@
     </div>
     <div class="grid_2">
         <div class="user-login-name">
-            Dear, <span id="name">{{ username }}</span>
+            Dear, <span id="user-login-name">{{ username }}</span>
         </div>
     </div>
     <div class="grid_1">
@@ -64,6 +64,7 @@
         <div class="function-settings" id="function-settings">
             <div class="panel panel-default">
                 <div class="panel-body form-horizontal payment-form">
+                    <input type="text" id="_id" name="_id" hidden>
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-9">
@@ -83,9 +84,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="default_value" class="col-sm-3 control-label">Default value</label>
+                        <label for="default" class="col-sm-3 control-label">Default value</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="default_value" name="default_value" value="5">
+                            <input type="number" class="form-control" id="default" name="default" value="5">
                         </div>
                     </div>
                     <div class="form-group btn-center pull-right row">
@@ -94,7 +95,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-3" role="group">
-                            <button type="button" class="btn btn-success function-add-button">Save</button>
+                            <button type="button" class="btn btn-success function-save-button">Save</button>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-3" role="group">

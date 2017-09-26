@@ -11,6 +11,5 @@ module.exports = {
         jwtFromRequest: ExtractJwt,
         secretOrKey: 'TfbTq2NfLzqMcbVY9EpGQ2p'
     },
-
     expiresIn: '1 day'
 };

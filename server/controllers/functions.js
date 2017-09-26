@@ -6,7 +6,7 @@ const Functions = require('../models/functions');
 
 exports.all = (req, res) => {
     // logController.route(req, res);
-    Functions.all(function(err, docs) {
+    Functions.all((err, docs) => {
         if (err) {
             // log.error(err);
             return res.sendStatus(500);
@@ -18,7 +18,7 @@ exports.all = (req, res) => {
 exports.findById = (req, res) => {
     // logController.route(req, res);
     console.log('findById: ', req.params.id)
-    Functions.findById(parseInt(req.params.id), function(err, doc) {
+    Functions.findById(parseInt(req.params.id), (err, doc) => {
         if (err) {
             // log.error(err);
             return res.sendStatus(500);
@@ -29,7 +29,7 @@ exports.findById = (req, res) => {
 
 exports.getNameById = (req, res) => {
     // logController.route(req, res);
-    Functions.findById(req.params.id, function(err, doc) {
+    Functions.findById(req.params.id, (err, doc) => {
         if (err) {
             // log.error(err);
             return res.sendStatus(500);
@@ -45,7 +45,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         description: req.body.desc
     };
-    Functions.create(functions, function(err, result) {
+    Functions.create(functions, (err, result) => {
         if (err) {
             // log.error(err);
             return res.sendStatus(500);
@@ -58,8 +58,13 @@ exports.update = (req, res) => {
     // logController.route(req, res);
     Functions.update(
         req.params.id,
-        {name: req.body.name},
-        function(err, result) {
+        {
+            name: req.body.name,
+            description: req.body.description,
+            value: req.body.value,
+            default: req.body.default
+        },
+        (err, result) => {
             if (err) {
                 // log.error(err);
                 return res.sendStatus(500);
@@ -73,7 +78,7 @@ exports.delete = (req, res) => {
     // logController.route(req, res);
     Functions.delete(
         req.params.id,
-        function(err, result) {
+        (err, result) => {
             if (err) {
                 // log.error(err);
                 return res.sendStatus(500);
