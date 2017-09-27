@@ -37,15 +37,31 @@ module.exports = app => {
         res.render('index.html', { username: req.user.username });
     });
 
-    app.get('/page', (req, res) => {
-        res.render('page.html', {
+    app.get('/functions', (req, res) => {
+        res.render('functions.html', {
             username: 'Test admin',
+            roles: 'ADMIN',
             current_time: new Date()
         });
     });
-    app.get('/page2', (req, res) => {
-        res.render('page2.html', {
+    app.get('/customers', (req, res) => {
+        res.render('customers.html', {
             username: 'Test admin',
+            roles: 'ADMIN',
+            current_time: new Date()
+        });
+    });
+    app.get('/licenses', (req, res) => {
+        res.render('licenses.html', {
+            username: 'Test admin',
+            roles: 'GUEST',
+            current_time: new Date()
+        });
+    });
+    app.get('/system', (req, res) => {
+        res.render('system.html', {
+            username: 'Test admin',
+            roles: 'GUEST',
             current_time: new Date()
         });
     });
@@ -94,11 +110,11 @@ module.exports = app => {
     app.post('/logout', (req, res) => {
         res.clearCookie('token');
         res.status(200).send({message: "Logout success."});
-    })
+    });
 
     app.get('/api/v1/functions', functionsController.all);
     app.post('/api/v1/functions', functionsController.create);
     app.get('/api/v1/functions/:id', functionsController.findById);
     app.put('/api/v1/functions/:id', functionsController.update);
-    app.delete('/api/v1/functions/:id', functionsController.delete);
+    // app.delete('/api/v1/functions/:id', functionsController.delete);
 };
