@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="/assets/css/960/reset.css" />
     <link rel="stylesheet" href="/assets/css/960/text.css" />
     <link rel="stylesheet" href="/assets/css/960/960.css" />
+    <script src="/assets/js/common.js"></script>
     <!--<link rel="stylesheet" href="/assets/css/960/demo.css" />-->
-    <script src="/assets/js/action.js"></script>
+    <script src="/assets/js/customers.js"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/custom.css" />
 
@@ -39,20 +40,9 @@
         </div>
     </div>
     <div class="clear"></div>
-    <ul class="nav nav-tabs nav-justified">
-        <li>
-            <a href="/functions"><h4 class="global-menu-item">Functions</h4></a>
-        </li>
-        <li class="active">
-            <a href="/customers"><h4 class="global-menu-item">Customers</h4></a>
-        </li>
-        <li>
-            <a href="/licenses"><h4 class="global-menu-item">Licenses</h4></a>
-        </li>
-        <li>
-            <a href="/system"><h4 class="global-menu-item">System</h4></a>
-        </li>
-    </ul>
+
+    <div data-include="menu"></div>
+
     <div class="clear"></div>
 
     {% if (roles != 'ADMIN') %}

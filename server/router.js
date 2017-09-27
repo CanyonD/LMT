@@ -66,6 +66,12 @@ module.exports = app => {
         });
     });
 
+    app.get('/menu', (req, res) => {
+        res.render('menu.html', {
+            roles: 'ADMIN',
+        });
+    });
+
     app.post('/login', async (req, res) => {
         try {
             let user = await UsersModel.findOne({username: {$regex: _.escapeRegExp(req.body.username), $options: "i"}}).lean().exec();

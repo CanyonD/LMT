@@ -1,16 +1,18 @@
-
+<script>
+    $('#' + window.location.pathname.slice(1)).addClass('active');
+</script>
 
 <ul class="nav nav-tabs nav-justified">
-    <li>
+    <li id="functions">
         <a href="/functions"><h4 class="global-menu-item">Functions</h4></a>
     </li>
-    <li >
+    <li id="customers">
         <a href="/customers"><h4 class="global-menu-item">Customers</h4></a>
     </li>
-    <li class="active">
+    <li id="licenses">
         <a href="/licenses"><h4 class="global-menu-item">Licenses</h4></a>
     </li>
-    <li>
+    <li id="system">
         <a href="/system"><h4 class="global-menu-item">System</h4></a>
     </li>
 </ul>
