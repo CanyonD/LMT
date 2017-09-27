@@ -8,6 +8,8 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
+const packageJSON = require('../package.json');
+
 const functionsController = require('./controllers/functions');
 
 function checkAuth (req, res, next) {
@@ -41,34 +43,45 @@ module.exports = app => {
         res.render('functions.html', {
             username: 'Test admin',
             roles: 'ADMIN',
-            current_time: new Date()
+            current_time: new Date(),
+            version: packageJSON.version
         });
     });
     app.get('/customers', (req, res) => {
         res.render('customers.html', {
             username: 'Test admin',
             roles: 'ADMIN',
-            current_time: new Date()
+            current_time: new Date(),
+            version: packageJSON.version
         });
     });
     app.get('/licenses', (req, res) => {
         res.render('licenses.html', {
             username: 'Test admin',
             roles: 'GUEST',
-            current_time: new Date()
+            current_time: new Date(),
+            version: packageJSON.version
         });
     });
     app.get('/system', (req, res) => {
         res.render('system.html', {
             username: 'Test admin',
             roles: 'GUEST',
-            current_time: new Date()
+            current_time: new Date(),
+            version: packageJSON.version
         });
     });
 
     app.get('/menu', (req, res) => {
         res.render('menu.html', {
             roles: 'ADMIN',
+        });
+    });
+
+    app.get('/about', (req, res) => {
+        res.send({
+            version: packageJSON.version,
+            author: packageJSON.author
         });
     });
 
