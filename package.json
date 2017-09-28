@@ -1,6 +1,6 @@
 {
   "name": "LMT",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "License Management Tool",
   "main": "index.js",
   "scripts": {
