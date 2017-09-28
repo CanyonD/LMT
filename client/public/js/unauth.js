@@ -26,25 +26,53 @@ $('form').on('submit', e => {
     e.preventDefault();
     let value = $(e.target).attr('class');
     let selector = '.' + value;
-    $.ajax({
-        url: '/' + value,
-        type: 'POST',
-        data: {
-            username: $(selector + ' [name=username]').val(),
-            password: $(selector + ' [name=password]').val()
-        },
-        beforeSend: () => {
-            $(selector + ' button').prop('disabled', true);
-        },
-        success: (res) => {
-            // alert(response(res));
-            location.reload();
-        },
-        error: (res) => {
-            // alert(response(res));
-        },
-        complete: () => {
-            $(selector + ' button').prop('disabled', false);
-        }
-    })
+
+    if (value == 'register') {
+        $.ajax({
+            url: '/' + value,
+            type: 'POST',
+            data: {
+                username: $(selector + ' [name=username]').val(),
+                password: $(selector + ' [name=password]').val(),
+                phone: $(selector + ' [name=phone]').val(),
+                email: $(selector + ' [name=email]').val(),
+                address: $(selector + ' [name=address]').val()
+            },
+            beforeSend: () => {
+                $(selector + ' button').prop('disabled', true);
+            },
+            success: (res) => {
+                console.error(res.responseText);
+                location.reload();
+            },
+            error: (res) => {
+                console.error(res.responseText);
+            },
+            complete: () => {
+                $(selector + ' button').prop('disabled', false);
+            }
+        });
+    } else {
+        $.ajax({
+            url: '/' + value,
+            type: 'POST',
+            data: {
+                username: $(selector + ' [name=username]').val(),
+                password: $(selector + ' [name=password]').val(),
+            },
+            beforeSend: () => {
+                $(selector + ' button').prop('disabled', true);
+            },
+            success: (res) => {
+                console.error(res.responseText);
+                location.reload();
+            },
+            error: (res) => {
+                console.error(res.responseText);
+            },
+            complete: () => {
+                $(selector + ' button').prop('disabled', false);
+            }
+        });
+    }
 });

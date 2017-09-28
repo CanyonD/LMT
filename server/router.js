@@ -39,40 +39,40 @@ module.exports = app => {
         res.render('index.html', { username: req.user.username });
     });
 
-    app.get('/functions', (req, res) => {
+    app.get('/functions', checkAuth, (req, res) => {
         res.render('functions.html', {
-            username: 'Test admin',
+            username: req.user.username,
             roles: 'ADMIN',
             current_time: new Date(),
             version: packageJSON.version
         });
     });
-    app.get('/customers', (req, res) => {
+    app.get('/customers', checkAuth, (req, res) => {
         res.render('customers.html', {
-            username: 'Test admin',
+            username: req.user.username,
             roles: 'ADMIN',
             current_time: new Date(),
             version: packageJSON.version
         });
     });
-    app.get('/licenses', (req, res) => {
+    app.get('/licenses', checkAuth, (req, res) => {
         res.render('licenses.html', {
-            username: 'Test admin',
+            username: req.user.username,
             roles: 'GUEST',
             current_time: new Date(),
             version: packageJSON.version
         });
     });
-    app.get('/system', (req, res) => {
+    app.get('/system', checkAuth, (req, res) => {
         res.render('system.html', {
-            username: 'Test admin',
+            username: req.user.username,
             roles: 'GUEST',
             current_time: new Date(),
             version: packageJSON.version
         });
     });
 
-    app.get('/menu', (req, res) => {
+    app.get('/menu', checkAuth, (req, res) => {
         res.render('menu.html', {
             roles: 'ADMIN',
         });
@@ -109,7 +109,10 @@ module.exports = app => {
 
             user = await UsersModel.create({
                 username: req.body.username,
-                password: req.body.password
+                password: req.body.password,
+                email: req.body.email,
+                address: req.body.address,
+                phone: req.body.phone
             });
 
             const token = createToken({id: user._id, username: user.username});
