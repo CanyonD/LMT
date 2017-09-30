@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const packageJSON = require('../package.json');
 
 const functionsController = require('./controllers/functions');
+const customersController = require('./controllers/customers');
 
 function checkAuth (req, res, next) {
     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
@@ -139,4 +140,11 @@ module.exports = app => {
     app.get('/api/v1/functions/:id', functionsController.findById);
     app.put('/api/v1/functions/:id', functionsController.update);
     // app.delete('/api/v1/functions/:id', functionsController.delete);
+
+    app.get('/api/v1/customers', customersController.all);
+    app.post('/api/v1/customers', customersController.create);
+    app.get('/api/v1/customers/:id', customersController.findById);
+    app.put('/api/v1/customers/:id', customersController.update);
+    // app.delete('/api/v1/customers/:id', functionsController.delete);
+
 };

@@ -55,6 +55,46 @@
     </div>
     {% else %}
 
+    <div class="grid_4">
+        <h3 class="list-name">List of customers:</h3>
+        <div class="list-group" id="customers-list"></div>
+    </div>
+    <div class="grid_8">
+        <div class="function-title">Customer settings: </div>
+        <div class="function-settings" id="function-settings">
+            <div class="panel panel-default">
+                <div class="panel-body form-horizontal payment-form">
+                    <input type="text" id="_id" name="_id" hidden>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="description" name="description">
+                        </div>
+                    </div>
+                    <div class="form-group btn-center pull-right row">
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-primary function-report-button">Reports</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-success function-save-button">Save</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-danger function-cancel-button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
 
 
     {% endif %}
