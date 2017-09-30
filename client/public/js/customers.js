@@ -67,4 +67,9 @@ $(document).ready(function () {
             });
         }
     });
+
+    $('#email').flatpickr({
+        dateFormat: "d-m-Y",
+        mode: "range"
+    });
 });

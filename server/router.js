@@ -36,6 +36,9 @@ module.exports = app => {
     app.use('/public/js', express.static('./node_modules/ajax/lib')); // redirect AJAX
     app.use('/public/css', express.static('./node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
+    app.use('/public/js', express.static('./node_modules/flatpickr/dist')); // redirect flatpickr
+    app.use('/public/css', express.static('./node_modules/flatpickr/dist')); // redirect CSS bootstrap
+
     app.get('/', checkAuth, (req, res) => {
         res.render('index.html', { username: req.user.username });
     });
