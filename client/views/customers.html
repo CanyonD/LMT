@@ -61,6 +61,12 @@
 
     <div class="grid_4">
         <h3 class="list-name">List of customers:</h3>
+        <div class="btn-group btn-filter-group">
+            <button type="button" class="btn btn-filter btn-primary">New</button>
+            <button type="button" class="btn btn-filter btn-primary">Active</button>
+            <button type="button" class="btn btn-filter btn-primary">Expired</button>
+            <button type="button" class="btn btn-filter btn-primary">Trash</button>
+        </div>
         <div class="list-group" id="customers-list"></div>
     </div>
     <div class="grid_8">
@@ -84,20 +90,65 @@
                     <div class="form-group">
                         <label for="email" class="col-sm-3 control-label">E-mail</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Select Date..">
+                            <input type="text" class="form-control" id="email" name="email">
                         </div>
                     </div>
-                    <div class="form-group btn-center pull-right row">
-                        <div class="col-md-3" role="group">
-                            <button type="button" class="btn btn-primary function-report-button">Reports</button>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-3 control-label">Phone</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phone" name="phone">
                         </div>
-                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">Address</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer_code" class="col-sm-3 control-label">Customer code</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="customer_code" name="customer_code">
+                        </div>
+                    </div>
+
+                    <div class="form-group btn-center pull-right row">
                         <div class="col-md-3" role="group">
                             <button type="button" class="btn btn-success function-save-button">Save</button>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-3" role="group">
                             <button type="button" class="btn btn-danger function-cancel-button">Cancel</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-danger function-trash-button" title="Move to / Restore from Trash">Trash</button>
+                        </div>
+                    </div>
+                    <div class="form-group btn-center pull-right row">
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-info function-create-license-button">Create new license</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-info function-change-license-button">Change last license</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="btn btn-info function-increase-button" title="Increase expiration of license">Increase</button>
+                        </div>
+                    </div>
+                    <div class="form-group btn-center pull-right row">
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="col-xs-3 btn btn-primary function-generate-button">Generate new license</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="col-xs-3 btn btn-primary function-upload-button">Upload sysdat</button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3" role="group">
+                            <button type="button" class="col-xs-3 btn btn-primary function-download-button">Download last license</button>
                         </div>
                     </div>
                 </div>

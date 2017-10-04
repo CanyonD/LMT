@@ -40,6 +40,11 @@ $(document).ready(function () {
                     $('input#_id').val( values._id );
                     $('input#name').val( values.name );
                     $('input#description').val( values.description );
+                    $('input#email').val( values.email );
+                    $('input#phone').val( values.phone );
+                    $('input#address').val( values.address );
+                    $('input#customer_code').val( values.customer_code );
+
                 }
             });
         }
@@ -50,11 +55,14 @@ $(document).ready(function () {
         values['name'] = $('input#name').val();
         values['description'] = $('input#description').val();
         values['_id'] = $('input#_id').val();
-        console.log(values);
-
+        values['email'] = $('input#email').val();
+        values['phone'] = $('input#phone').val();
+        values['address'] = $('input#address').val();
+        values['customer_code'] = $('input#customer_code').val();
         let jsonData = JSON.stringify(values);
 
-        if ( !isNaN(values['_id']) ) {
+        if ( values['_id'] ) {
+            console.log(values['_id']);
             $.ajax({
                 url: '/api/v1/customers/' + values['_id'],
                 method: "PUT",
@@ -68,8 +76,8 @@ $(document).ready(function () {
         }
     });
 
-    $('#email').flatpickr({
-        dateFormat: "d-m-Y",
-        mode: "range"
-    });
+    // $('#email').flatpickr({
+    //     dateFormat: "d-m-Y",
+    //     mode: "range"
+    // });
 });

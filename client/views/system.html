@@ -51,7 +51,22 @@
             Please contact the Administrator.
         </h1>
     </div>
-{% endif %}
+{% else %}
+    <div class="grid_4">
+        <br>
+        <div class="list-group" id="customers-list">
+            <a href="#" class="list-group-item" id="system-edit">
+                <h5 class="global-menu-item">Edit profile</h5>
+            </a>
+            <a href="#" class="list-group-item" id="system-password">
+                <h5 class="global-menu-item">Change password</h5>
+            </a>
+        </div>
+    </div>
+    <div class="grid_8">
+        <div class="system-settings" id="system-settings"></div>
+    </div>
+    {% endif %}
 
 </div>
 </body>

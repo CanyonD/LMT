@@ -70,7 +70,8 @@ module.exports = app => {
     app.get('/system', checkAuth, (req, res) => {
         res.render('system.html', {
             username: req.user.username,
-            roles: 'GUEST',
+            user_id: req.user._id,
+            roles: 'ADMIN',
             current_time: new Date(),
             version: packageJSON.version
         });
