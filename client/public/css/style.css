@@ -115,6 +115,8 @@ body {
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
     cursor: pointer;
 }
 .form button:hover:enabled,.form button:active,.form button:focus {
@@ -188,6 +190,20 @@ ul {
 }
 .social-buttons div span {
     font-weight: bold;
+}
+.chat-message button, .controls a {
+    font-family: "Roboto", sans-serif;
+    float: right;
+    text-transform: uppercase;
+    outline: 0;
+    background: #86BB71;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
 }
 a.logout-btn{
     background-color: rgb(245, 132, 130);
