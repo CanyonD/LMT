@@ -61,8 +61,7 @@ $(document).ready(function () {
         values['customer_code'] = $('input#customer_code').val();
         let jsonData = JSON.stringify(values);
 
-        if ( values['_id'] ) {
-            console.log(values['_id']);
+        if ( values['_id'] ) {              // UPDATE
             $.ajax({
                 url: '/api/v1/customers/' + values['_id'],
                 method: "PUT",
@@ -73,11 +72,12 @@ $(document).ready(function () {
                     console.log(values);
                 }
             });
+        } else {
+            console.log('saving new item');
         }
     });
 
-    // $('#email').flatpickr({
-    //     dateFormat: "d-m-Y",
-    //     mode: "range"
-    // });
+    $('.add-new-item-button').click(() => {
+        $('input').val('');
+    });
 });

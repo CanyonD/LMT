@@ -32,15 +32,15 @@ function createToken (body) {
 
 module.exports = app => {
     app.use('/assets', express.static('./client/public'));
+
     app.use('/public/js', express.static('./node_modules/bootstrap/dist/js')); // redirect bootstrap JS
     app.use('/public/js', express.static('./node_modules/jquery/dist')); // redirect JS jQuery
     app.use('/public/js', express.static('./node_modules/ajax/lib')); // redirect AJAX
-    app.use('/public/css', express.static('./node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
-
     app.use('/public/js', express.static('./node_modules/flatpickr/dist')); // redirect flatpickr
-    app.use('/public/css', express.static('./node_modules/flatpickr/dist')); // redirect CSS bootstrap
-
     app.use('/public/js', express.static('./node_modules/jquery.cookie')); // redirect for jquery.cookie.js
+
+    app.use('/public/css', express.static('./node_modules/flatpickr/dist')); // redirect flatpickr
+    app.use('/public/css', express.static('./node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
     app.get('/', checkAuth, (req, res) => {
         res.render('index.html', { username: req.user.username });
@@ -48,41 +48,42 @@ module.exports = app => {
 
     app.get('/functions', checkAuth, (req, res) => {
         res.render('functions.html', {
-            username: req.user.username,
             roles: 'ADMIN',
-            current_time: new Date(),
-            version: packageJSON.version
+            title: packageJSON.name
         });
     });
     app.get('/customers', checkAuth, (req, res) => {
         res.render('customers.html', {
-            username: req.user.username,
             roles: 'ADMIN',
-            current_time: new Date(),
-            version: packageJSON.version
+            title: packageJSON.name
         });
     });
     app.get('/licenses', checkAuth, (req, res) => {
         res.render('licenses.html', {
-            username: req.user.username,
             roles: 'GUEST',
-            current_time: new Date(),
-            version: packageJSON.version
+            title: packageJSON.name
         });
     });
     app.get('/system', checkAuth, (req, res) => {
         res.render('system.html', {
-            username: req.user.username,
-            user_id: req.user._id,
             roles: 'ADMIN',
-            current_time: new Date(),
-            version: packageJSON.version
+            title: packageJSON.name
         });
     });
 
     app.get('/menu', checkAuth, (req, res) => {
         res.render('menu.html', {
             roles: 'ADMIN',
+        });
+    });
+
+    app.get('/header', checkAuth, (req, res) => {
+        res.render('header.html', {
+            username: req.user.username,
+            user_id: req.user._id,
+            roles: 'ADMIN',
+            current_time: new Date(),
+            version: packageJSON.version
         });
     });
 

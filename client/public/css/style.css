@@ -3,20 +3,17 @@
 *, *:before, *:after {
     box-sizing: border-box;
 }
-
 body {
-    background: #C5DDEB;
+    background: #93B0B7;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .container {
     margin: 2% auto;
     width: 760px;
     background: #444753;
 }
-
 .users-list {
     width: 270px;
     float: left;
@@ -57,117 +54,21 @@ body {
 .users-list .status {
     color: #92959E;
 }
-.chat, .room {
-    background: #F2F5F8;
-}
-.chat .chat-header, .room .room-header {
-    padding: 20px;
-    border-bottom: 2px solid white;
-}
-.chat .chat-header img, .room .room-header img {
-    float: left;
-}
-.chat .chat-header .chat-about, .room .room-header .room-about {
-    float: left;
-    padding-left: 10px;
-    margin-top: 16px;
-    font-size: 18px;
-}
-.chat .chat-header .chat-about, .room .room-header .room-about #name {
-    font-weight: bold;
-}
-.chat .chat-header .chat-room, .room .room-header .room-title {
-    font-weight: bold;
-    font-size: 16px;
-}
-.chat .chat-header .chat-num-users, .room .room-header .room-num-rooms {
-    color: #92959E;
-}
 .fa-users, .fa-th-list {
     float: right;
     color: #D8DADF;
     font-size: 20px;
     margin-top: 12px;
 }
-.chat .chat-history, .room .room-list {
-    padding: 10px 30px 20px;
-    border-bottom: 2px solid white;
-    overflow-y: scroll;
-    max-height: 580px;
-}
-.chat .chat-history .message-data {
-    margin-bottom: 15px;
-}
-.chat .chat-history .message-data-time {
-    color: #a8aab1;
-    padding-left: 6px;
-    font-size: 80%;
-}
-.chat .chat-history .message {
-    color: white;
-    padding: 18px 20px;
-    line-height: 26px;
-    font-size: 16px;
-    margin-bottom: 30px;
-    /*width: 90%;*/
-    position: relative;
-}
-.chat .chat-history .message:after {
-    bottom: 100%;
-    left: 7%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #86BB71;
-    border-width: 10px;
-    margin-left: -10px;
-}
-.chat .chat-history .my-message {
-    background: #86BB71;
-}
-.chat .chat-message, .room .room-create {
-    padding: 20px;
-}
-.chat .chat-message textarea, .room .room-create input {
-    width: 100%;
-    border: none;
-    padding: 10px 20px;
-    font: 14px/22px "Roboto", Arial, sans-serif;
-    margin-bottom: 10px;
-    resize: none;
-}
-.online, .offline, .me {
-    margin-right: 3px;
-    font-size: 10px;
-}
-
-.online {
-    color: #86BB71;
-}
-
-.offline {
-    color: #E38968;
-}
-
-.me {
-    color: #94C2ED;
-}
-
 .align-left {
     text-align: left;
 }
-
 .align-right {
     text-align: right;
 }
-
 .float-right {
     float: right;
 }
-
 .clearfix:after {
     visibility: hidden;
     display: block;
@@ -176,7 +77,6 @@ body {
     clear: both;
     height: 0;
 }
-
 
 /*  Login Page */
 .login-page {
@@ -197,7 +97,7 @@ body {
 .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #f2f2f2;
+    background: #86BB71;
     width: 100%;
     border: 0;
     margin: 0 0 15px;
@@ -215,8 +115,6 @@ body {
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
     cursor: pointer;
 }
 .form button:hover:enabled,.form button:active,.form button:focus {
@@ -276,6 +174,7 @@ ul {
 }
 .form {
     background-color: #F2F5F8;
+    border-radius: 6px;
 }
 .form input {
     background-color: white;
@@ -290,31 +189,11 @@ ul {
 .social-buttons div span {
     font-weight: bold;
 }
-.chat-message button, .controls a {
-    font-family: "Roboto", sans-serif;
-    float: right;
-    text-transform: uppercase;
-    outline: 0;
-    background: #86BB71;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-}
-button:hover:enabled, button:active, button:focus {
-    background: #89c771;
-}
-a.rooms-btn:hover:enabled, a.rooms-btn:active, a.rooms-btn:focus {
-    background: #89c771;
-}
 a.logout-btn{
-    background-color: rgb(226, 98, 92);
+    background-color: rgb(245, 132, 130);
 }
 a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
-    background-color: rgb(245, 106, 99);
+    background-color: rgb(226, 78, 65);
 }
 .controls {
     float: right;
@@ -340,10 +219,6 @@ a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
 }
 .container {
     overflow: hidden;
-}
-.chat, .users-list{
-    padding-bottom: 500em;
-    margin-bottom: -500em;
 }
 .not-found-error {
     padding: 5%;

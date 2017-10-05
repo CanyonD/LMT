@@ -2,48 +2,26 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title }}</title>
 
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/bootstrap.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/system.js"></script>
+    <script src="/public/js/jquery.cookie.js"></script>
+
     <link rel="stylesheet" href="/public/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/css/960/reset.css" />
     <link rel="stylesheet" href="/assets/css/960/text.css" />
     <link rel="stylesheet" href="/assets/css/960/960.css" />
-    <script src="/assets/js/common.js"></script>
     <!--<link rel="stylesheet" href="/assets/css/960/demo.css" />-->
-    <script src="/assets/js/system.js"></script>
-    <script src="/public/js/jquery.cookie.js"></script>
-
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/custom.css" />
-
 </head>
 <body>
 <div class="container_12">
-    <div class="grid_4">
-        <div class="logo">
-            Version: {{ version }}
-        </div>
-    </div>
-    <div class="grid_5">
-        <div class="current-time">
-            {{ current_time }}
-        </div>
-    </div>
-    <div class="grid_2">
-        <div class="user-login-name">
-            Dear, <span id="user-login-name">{{ username }}</span>
-        </div>
-    </div>
-    <div class="grid_1">
-        <div class="controls">
-            <a href="#" class="logout-btn">Logout</a>
-        </div>
-    </div>
-    <div class="clear"></div>
+    <div data-include="header"></div>
     <div data-include="menu"></div>
-    <div class="clear"></div>
 
 {% if (roles != 'ADMIN') %}
     <br><br>

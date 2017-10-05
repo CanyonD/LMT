@@ -101,3 +101,7 @@ body {
     vertical-align: baseline;
     margin-left: 0px;
 }
+.btn-add-item {
+    width: 100%;
+    margin-left: 0px !important;
+}

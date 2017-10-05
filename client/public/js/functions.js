@@ -54,7 +54,6 @@ $(document).ready(function () {
         values['value'] = $('input#value').val();
         values['default'] = parseInt($('input#default').val());
         values['_id'] = parseInt($('input#_id').val());
-        console.log(values);
 
         let jsonData = JSON.stringify(values);
 
@@ -69,6 +68,14 @@ $(document).ready(function () {
                     console.log(values);
                 }
             });
+        } else {
+            console.log('saving new item');
         }
     });
+
+    $('.add-new-item-button').click(() => {
+        $('input').val('');
+        $('input#default').val( 5 );
+    });
+
 });
