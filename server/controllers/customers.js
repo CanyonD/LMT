@@ -66,7 +66,11 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
     let values = {
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        phone: req.body.phone,
+        address: req.body.address,
+        email: req.body.email,
+        customer_code: req.body.customer_code
     };
     Customers.update(
         req.params.id,

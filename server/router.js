@@ -12,6 +12,7 @@ const packageJSON = require('../package.json');
 
 const functionsController = require('./controllers/functions');
 const customersController = require('./controllers/customers');
+const usersController = require('./controllers/users');
 
 function checkAuth (req, res, next) {
     passport.authenticate('jwt', { session: false }, (err, decryptToken, jwtError) => {
@@ -38,6 +39,8 @@ module.exports = app => {
 
     app.use('/public/js', express.static('./node_modules/flatpickr/dist')); // redirect flatpickr
     app.use('/public/css', express.static('./node_modules/flatpickr/dist')); // redirect CSS bootstrap
+
+    app.use('/public/js', express.static('./node_modules/jquery.cookie')); // redirect for jquery.cookie.js
 
     app.get('/', checkAuth, (req, res) => {
         res.render('index.html', { username: req.user.username });
@@ -98,6 +101,9 @@ module.exports = app => {
                 res.cookie('token', token, {
                     httpOnly: true
                 });
+                res.cookie('user_guid', user._id, {
+                    httpOnly: false
+                });
 
                 res.status(200).send({message: "User login success."});
             } else res.status(400).send({message: "User not exist or password not correct"});
@@ -150,5 +156,8 @@ module.exports = app => {
     app.get('/api/v1/customers/:id', customersController.findById);
     app.put('/api/v1/customers/:id', customersController.update);
     // app.delete('/api/v1/customers/:id', functionsController.delete);
+
+    app.get('/api/v1/users/:id', usersController.findById);
+    app.put('/api/v1/users/:id', usersController.update);
 
 };

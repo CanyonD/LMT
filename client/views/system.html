@@ -13,6 +13,8 @@
     <script src="/assets/js/common.js"></script>
     <!--<link rel="stylesheet" href="/assets/css/960/demo.css" />-->
     <script src="/assets/js/system.js"></script>
+    <script src="/public/js/jquery.cookie.js"></script>
+
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/custom.css" />
 
@@ -31,7 +33,7 @@
     </div>
     <div class="grid_2">
         <div class="user-login-name">
-            Dear, <span id="name">{{ username }}</span>
+            Dear, <span id="user-login-name">{{ username }}</span>
         </div>
     </div>
     <div class="grid_1">
@@ -54,7 +56,7 @@
 {% else %}
     <div class="grid_4">
         <br>
-        <div class="list-group" id="customers-list">
+        <div class="list-group" id="system-list">
             <a href="#" class="list-group-item" id="system-edit">
                 <h5 class="global-menu-item">Edit profile</h5>
             </a>
@@ -66,7 +68,7 @@
     <div class="grid_8">
         <div class="system-settings" id="system-settings"></div>
     </div>
-    {% endif %}
+{% endif %}
 
 </div>
 </body>
