@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=0.50, maximum-scale=1.6, initial-scale=1.0" />
 
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/bootstrap.js"></script>
@@ -42,8 +43,35 @@
         </div>
         <div class="list-group" id="customers-list"></div>
         <button type="button" class="btn btn-warning btn-add-item add-new-item-button">Add</button>
+
+        <div class="add-new-item-button">
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-sm">
+                    <li class="disabled">
+                      <span>
+                        <span aria-hidden="true">&laquo;</span>
+                      </span>
+                    </li>
+                    <li class="active">
+                        <span>1 <span class="sr-only">(current)</span></span>
+                    </li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <div class="grid_8">
+        <div class="alert alert-success" role="alert">
+            alert
+        </div>
         <div class="function-title">Customer settings: </div>
         <div class="function-settings" id="function-settings">
             <div class="panel panel-default">

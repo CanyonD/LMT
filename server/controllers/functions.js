@@ -18,13 +18,10 @@ exports.all = (req, res) => {
 };
 
 exports.findById = (req, res) => {
-    // logController.route(req, res);
-    // console.log('findById: ', req.params.id)
     Functions.findById(
         parseInt(req.params.id),
         (err, doc) => {
             if (err) {
-                // log.error(err);
                 return res.sendStatus(500);
             }
             res.send(doc);

@@ -3,11 +3,23 @@ $(document).ready(function () {
     let customersList = document.getElementById("customers-list");
 
     let customerItemStyle = (value) => {
-        return '<a href="#" class="list-group-item" id="customer-list-id-' + value._id + '">' +
-                '<h5 class="global-menu-item">' +
-                    value.name +
-                '</h5>' +
-            '</a>';
+        let customer_code = value.customer_code === '' ? String.fromCharCode(160) : value.customer_code;
+        return  '<a href="#" class="list-group-item" id="customer-list-id-' + value._id + '" itemscope="">' +
+                    '<h5 class="list-group-item-heading">' +
+                        '<span class="label label-success" itemprop="status">' +
+                            'New' +
+                        '</span>' +
+                        '<span class="text-center" itemprop="name">' +
+                            value.name +
+                        '</span>' +
+                    '</h5>' +
+                    '<p class="list-group-item-text">' +
+                        '<span itemprop="customer_code">' +
+                            customer_code +
+                        '</span>' +
+                        '<span class="badge" itemprop="id">(' + ' ' + ')</span>' +
+                    '</p>' +
+                '</a>';
     };
 
     $.ajax({
@@ -24,7 +36,10 @@ $(document).ready(function () {
     $(customersList).click('click',(e) => {
         $("#customers-list").find('*').removeClass("active");
         let id;
-        if (e.target.id === '') {
+        if (e.target.parentNode.id === '') {
+            $(e.target.parentNode.parentNode).addClass("active");
+            id = e.target.parentNode.parentNode.id;
+        } else if (e.target.id === '') {
             $(e.target.parentNode).addClass("active");
             id = e.target.parentNode.id;
         } else {
@@ -32,6 +47,7 @@ $(document).ready(function () {
             id = e.target.id;
         }
         id = id.split('customer-list-id-')[1];
+        console.log(id);
         if (id) {
             $.ajax({
                 url: '/api/v1/customers/' + id,
@@ -44,6 +60,9 @@ $(document).ready(function () {
                     $('input#phone').val( values.phone );
                     $('input#address').val( values.address );
                     $('input#customer_code').val( values.customer_code );
+
+                },
+                error: () => {
 
                 }
             });
@@ -66,14 +85,24 @@ $(document).ready(function () {
                 url: '/api/v1/customers/' + values['_id'],
                 method: "PUT",
                 contentType: "application/json",
-                // dataType: "json",
                 data: jsonData,
                 success: (values) => {
                     console.log(values);
+                    window.location = window.location.href;
                 }
             });
-        } else {
-            console.log('saving new item');
+        } else {                            // CREATE
+            delete values['_id'];
+            $.ajax({
+                url: '/api/v1/customers',
+                method: "POST",
+                contentType: "application/json",
+                data: jsonData,
+                success: (values) => {
+                    console.log(values);
+                    window.location = window.location.href;
+                }
+            });
         }
     });
 
