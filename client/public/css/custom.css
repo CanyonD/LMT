@@ -126,3 +126,16 @@ body {
 .search-clear {
     width: 60px;
 }
+
+.list-group {
+    margin-bottom: 5px;
+}
+
+.pagination {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pagination > li {
+    margin-left: 0px;
+}

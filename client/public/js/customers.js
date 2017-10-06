@@ -29,7 +29,7 @@ $(document).ready(function () {
                             '</span>' +
                         '</h5>' +
                         '<p class="list-group-item-text">' +
-                            '<span class="badge" itemprop="id">(' + value._id + ')</span>' +
+                            '<span class="badge" itemprop="id" title="' + value._id.toUpperCase() + '">GUID</span>' +
                             '<span itemprop="customer_code">' +
                                 customer_code +
                             '</span>' +

@@ -36,10 +36,10 @@
     <div class="grid_4">
         <h3 class="list-name">List of customers:</h3>
         <div class="btn-group btn-filter-group">
-            <button type="button" class="btn btn-filter btn-primary">New</button>
+            <button type="button" class="btn btn-filter btn-success">New</button>
             <button type="button" class="btn btn-filter btn-primary">Active</button>
-            <button type="button" class="btn btn-filter btn-primary">Expired</button>
-            <button type="button" class="btn btn-filter btn-primary">Trash</button>
+            <button type="button" class="btn btn-filter btn-warning">Expired</button>
+            <button type="button" class="btn btn-filter btn-danger">Trash</button>
         </div>
         <div class="input-group search-group">
             <input type="text" class="form-control search-field" placeholder="Search...">
@@ -49,30 +49,26 @@
         </div>
         <div class="list-group" id="customers-list"></div>
         <button type="button" class="btn btn-warning btn-add-item add-new-item-button">Add</button>
+        <ul class="pagination justify-content-center">
+            <li class="disabled">
+                  <span>
+                    <span aria-hidden="true">&laquo;</span>
+                  </span>
+            </li>
+            <li class="active">
+                <span>1 <span class="sr-only">(current)</span></span>
+            </li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
 
-        <div class="add-new-item-button">
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm">
-                    <li class="disabled">
-                      <span>
-                        <span aria-hidden="true">&laquo;</span>
-                      </span>
-                    </li>
-                    <li class="active">
-                        <span>1 <span class="sr-only">(current)</span></span>
-                    </li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </div>
     <div class="grid_8">
         <!--<div class="alert alert-success" role="alert">-->
