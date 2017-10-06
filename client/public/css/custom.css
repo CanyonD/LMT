@@ -115,3 +115,14 @@ body {
 [itemprop="id"] {
     font-size: 8px;
 }
+
+.search-group {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.search-field {
+    border-color: rgb(204, 204, 204);
+}
+.search-clear {
+    width: 60px;
+}

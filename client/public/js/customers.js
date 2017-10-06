@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    let tmpValues = null;
     let customersList = document.getElementById("customers-list");
 
-    function refreshList() {
+    function refreshList(search = null) {
         customersList.innerHTML = '';
         let customerItemStyle = (value) => {
             let customer_code = value.customer_code === '' ? String.fromCharCode(160) : value.customer_code,
@@ -42,7 +41,13 @@ $(document).ready(function () {
             dataType:'json',
             success: (names) => {
                 names.forEach( (item) => {
-                    customersList.innerHTML += customerItemStyle(item);
+                    if (search === null) {
+                        customersList.innerHTML += customerItemStyle(item);
+                    } else {
+                        if ( item.name.indexOf(search) > -1 ) {
+                            customersList.innerHTML += customerItemStyle(item);
+                        }
+                    }
                 });
                 let current_id = $('input#_id').val();
                 if (current_id !== null && current_id !== '') {
@@ -131,7 +136,6 @@ $(document).ready(function () {
         }
     });
 
-
     $('.function-trash-button').click(() => {
         let values = {};
             values['_id'] = $('input#_id').val();
@@ -162,6 +166,19 @@ $(document).ready(function () {
         }
     });
 
+    $('.search-field').keyup(() => {
+        let value = $('.search-field').val();
+        if (value.length > 1) {
+            refreshList(value);
+        } else if (value === '') {
+            refreshList();
+        }
+    });
+
+    $('.search-clear').click(() => {
+        $('.search-field').val('');
+        refreshList();
+    });
 
     $('.add-new-item-button').click(() => {
         $('input').val('');
