@@ -110,8 +110,8 @@ body {
     width: 75%;
 }
 [itemprop="customer_code"] {
-
+    float: right;
 }
 [itemprop="id"] {
-    float: right;
+    font-size: 8px;
 }
