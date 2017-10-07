@@ -10,7 +10,8 @@ const UsersSchema = new Schema({
     addedAt: {type: Date, default: Date.now},
     email: {type: String},
     phone: {type: String},
-    address: {type: String}
+    address: {type: String},
+    role: {type: String}
 }, {
     versionKey: false,
     collection: "UsersCollection"

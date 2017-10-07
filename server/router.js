@@ -30,6 +30,14 @@ function createToken (body) {
     );
 }
 
+function createAccessToken (body) {
+    return jwt.sign(
+        body,
+        config.jwt.secretOrKey,
+        {expiresIn: config.expiresIn}
+    );
+}
+
 module.exports = app => {
     app.use('/assets', express.static('./client/public'));
 
@@ -60,7 +68,7 @@ module.exports = app => {
     });
     app.get('/licenses', checkAuth, (req, res) => {
         res.render('licenses.html', {
-            roles: 'GUEST',
+            roles: 'ADMIN',
             title: packageJSON.name
         });
     });
@@ -102,6 +110,10 @@ module.exports = app => {
                 res.cookie('token', token, {
                     httpOnly: true
                 });
+                const accessToken = createAccessToken({id: user._id, username: user.role});
+                res.cookie('access_token', accessToken, {
+                    httpOnly: true
+                });
                 res.cookie('user_guid', user._id, {
                     httpOnly: false
                 });
@@ -124,13 +136,20 @@ module.exports = app => {
                 password: req.body.password,
                 email: req.body.email,
                 address: req.body.address,
-                phone: req.body.phone
+                phone: req.body.phone,
+                role: 'GUEST'
             });
 
             const token = createToken({id: user._id, username: user.username});
-
             res.cookie('token', token, {
                 httpOnly: true
+            });
+            const accessToken = createAccessToken({id: user._id, username: user.role});
+            res.cookie('access_token', accessToken, {
+                httpOnly: true
+            });
+            res.cookie('user_guid', user._id, {
+                httpOnly: false
             });
 
             res.status(200).send({message: "User created."});
@@ -143,6 +162,8 @@ module.exports = app => {
 
     app.post('/logout', (req, res) => {
         res.clearCookie('token');
+        res.clearCookie('access_token');
+        res.clearCookie('user_guid');
         res.status(200).send({message: "Logout success."});
     });
 
