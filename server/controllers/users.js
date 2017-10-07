@@ -54,8 +54,9 @@ exports.changePassword= (req, res) => {
             if (bcrypt.compareSync(values['old_password'], doc['password']))  {
                 console.log('password is correct');
                 if (values['new_password'].indexOf(values['renew_password']) === 0) {
+
                     Users.update(
-                        req.params.id,
+                        doc['_id'],
                         {
                             password: bcrypt.hashSync(values['new_password'], 12)
                         },
@@ -63,16 +64,18 @@ exports.changePassword= (req, res) => {
                             if (err) {
                                 return res.sendStatus(500);
                             }
-                            console.log(result);
-                            res.sendStatus(200);
+                            // console.log(result);
+                            console.log('password was changed');
+                            return res.sendStatus(200);
                         }
                     );
+                } else {
+                    console.log('new passwords are not same');
+                    return res.sendStatus(500);
                 }
-
-
-
-                res.send(doc);
+                // res.send(doc);
             } else {
+                console.log('password is not correct');
                 return res.sendStatus(500);
             }
         }
