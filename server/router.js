@@ -161,4 +161,5 @@ module.exports = app => {
     app.get('/api/v1/users/:id', usersController.findById);
     app.put('/api/v1/users/:id', usersController.update);
 
+    app.put('/api/v1/security/:id', usersController.changePassword);
 };

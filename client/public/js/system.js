@@ -33,6 +33,7 @@ $(document).ready(function () {
 
         if (id === 'password') {
             passwordUserForm();
+            $('input#_id').val( user_guid );
         }
     });
 
@@ -74,10 +75,43 @@ $(document).ready(function () {
                                     '<input type="text" class="form-control" id="role" name="role">' +
                                 '</div>' +
                             '</div>' +
+                            '<div class="form-group">' +
+                                '<div class="col-md-3"></div>' +
+                                '<div class="col-md-3" role="group">' +
+                                    '<button type="button" class="btn btn-success profile-save-button">Save</button>' +
+                                '</div>' +
+                                '<div class="col-md-3" role="group">' +
+                                    '<button type="button" class="btn btn-danger profile-cancel-button">Cancel</button>' +
+                                '</div>' +
+                            '</div>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
             '</div>';
+
+        $('.profile-save-button').click(() => {
+            const values = {};
+            values['name'] = $('input#name').val();
+            values['_id'] = $('input#_id').val();
+            values['email'] = $('input#email').val();
+            values['phone'] = $('input#phone').val();
+            values['address'] = $('input#address').val();
+            values['role'] = $('input#role').val();
+
+            let jsonData = JSON.stringify(values);
+
+            if ( values['_id'] ) {              // UPDATE
+                $.ajax({
+                    url: '/api/v1/users/' + values['_id'],
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: jsonData,
+                    success: (res) => {
+                        console.log(res);
+                    }
+                });
+            }
+        });
     }
 
     function passwordUserForm() {
@@ -90,26 +124,56 @@ $(document).ready(function () {
                             '<div class="form-group">' +
                                 '<label for="name" class="col-sm-3 control-label">Old password</label>' +
                                 '<div class="col-sm-9">' +
-                                    '<input type="text" class="form-control" id="name" name="name">' +
+                                    '<input type="password" class="form-control" id="old_password" name="old_password">' +
                                     '</div>' +
                                 '</div>' +
                             '<div class="form-group">' +
-                            '<label for="email" class="col-sm-3 control-label">New password</label>' +
-                            '<div class="col-sm-9">' +
-                            '<input type="text" class="form-control" id="email" name="email">' +
-                            '</div>' +
+                                '<label for="email" class="col-sm-3 control-label">New password</label>' +
+                                '<div class="col-sm-9">' +
+                                    '<input type="password" class="form-control" id="new_password" name="new_password">' +
+                                '</div>' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<label for="address" class="col-sm-3 control-label">Re-new password</label>' +
-                            '<div class="col-sm-9">' +
-                            '<input type="text" class="form-control" id="address" name="address">' +
+                                '<label for="address" class="col-sm-3 control-label">Re-new password</label>' +
+                                '<div class="col-sm-9">' +
+                                    '<input type="password" class="form-control" id="renew_password" name="renew_password">' +
+                                '</div>' +
                             '</div>' +
+                            '<div class="form-group">' +
+                                '<div class="col-md-3"></div>' +
+                                '<div class="col-md-3" role="group">' +
+                                    '<button type="button" class="btn btn-success password-save-button">Save</button>' +
+                                '</div>' +
+                                '<div class="col-md-3" role="group">' +
+                                    '<button type="button" class="btn btn-danger password-cancel-button">Cancel</button>' +
+                                '</div>' +
                             '</div>' +
+
                         '</div>' +
                     '</div>' +
                 '</div>' +
             '</div>';
-    }
 
+        $('.password-save-button').click(() => {
+            const values = {};
+            values['_id'] = $('input#_id').val();
+            values['old_password'] = $('input#old_password').val();
+            values['new_password'] = $('input#new_password').val();
+            values['renew_password'] = $('input#renew_password').val();
+
+            let jsonData = JSON.stringify(values);
+            if ( values['_id'] ) {              // UPDATE
+                $.ajax({
+                    url: '/api/v1/security/' + values['_id'],
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: jsonData,
+                    success: (res) => {
+                        console.log(res);
+                    }
+                });
+            }
+        });
+    }
 });
 
