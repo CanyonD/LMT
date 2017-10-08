@@ -12,6 +12,7 @@ const packageJSON = require('../package.json');
 
 const functionsController = require('./controllers/functions');
 const customersController = require('./controllers/customers');
+const licensesController = require('./controllers/licenses');
 const usersController = require('./controllers/users');
 
 function checkAuth (req, res, next) {
@@ -178,6 +179,14 @@ module.exports = app => {
     app.get('/api/v1/customers/:id', customersController.findById);
     app.put('/api/v1/customers/:id', customersController.update);
     // app.delete('/api/v1/customers/:id', functionsController.delete);
+
+    app.get('/api/v1/licenses', licensesController.all);
+    app.post('/api/v1/licenses', licensesController.create);
+    app.get('/api/v1/licenses/:id', licensesController.findById);
+    app.put('/api/v1/licenses/:id', licensesController.update);
+
+    // app.get('/api/v1/licenses/download/:id', customersController.all);
+    // app.post('/api/v1/licenses/upload/:id', customersController.all);
 
     app.get('/api/v1/users/:id', usersController.findById);
     app.put('/api/v1/users/:id', usersController.update);
