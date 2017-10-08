@@ -15,6 +15,9 @@ $(document).ready(function () {
             if (value.status === 1) {
                 status_icon = 'danger';
                 status_text = 'Trash';
+            } else if ( new Date(value.valid_until) < new Date(now) ) {
+                status_icon = 'warning';
+                status_text = 'Expired';
             } else if ( new Date(value.addedAt) > new Date(now.setDate(now.getDate() - 7)) ) {
                 status_icon = 'success';
                 status_text = 'New';
@@ -35,7 +38,11 @@ $(document).ready(function () {
                         '<p class="list-group-item-text">' +
                             '<span class="badge" itemprop="id" title="' + value._id.toUpperCase() + '">GUID</span>' +
                             '<span itemprop="customer_code">' +
-                               last_modify.toLocaleDateString() +
+                                new Date(value.valid_until).toLocaleDateString() +
+                            '</span>' +
+                            '<br>' +
+                            '<span itemprop="functions">' +
+                                'All functions' +
                             '</span>' +
                         '</p>' +
                     '</a>';

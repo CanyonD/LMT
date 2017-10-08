@@ -112,6 +112,11 @@ body {
 [itemprop="customer_code"] {
     float: right;
 }
+[itemprop="functions"] {
+    text-align: center;
+    width: auto;
+    display: block;
+}
 [itemprop="id"] {
     font-size: 8px;
 }
