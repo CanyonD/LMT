@@ -1,6 +1,6 @@
 {
   "name": "LMT",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "License Management Tool",
   "main": "index.js",
   "scripts": {
@@ -24,9 +24,10 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
+    "bootstrap-table": "^1.11.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.1",
-    "flatpickr": "^3.0.7",
+    "flatpickr": "^3.1.5",
     "jquery": "^3.2.1",
     "jquery.cookie": "^1.4.1",
     "jsonwebtoken": "^7.4.3",

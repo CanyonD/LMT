@@ -4,19 +4,42 @@ const Users = require('../models/users');
 const bcrypt = require('bcryptjs');
 
 exports.all = (req, res) => {
-    Users.all(
-        (err, docs) => {
-            if (err) {
-                return res.sendStatus(500);
+    let query = req.query;
+    // console.log( query );
+    if (query.search !== null && query.search !== '' && typeof query.search === 'undefined') {
+        // console.log('getting all users');
+        Users.all(
+            (err, docs) => {
+                if (err) {
+                    return res.sendStatus(500);
+                }
+                docs.forEach((value) => {
+                    delete value['password'];
+                });
+                res.send({
+                    rows: docs,
+                    total: docs.length
+                });
             }
-            docs.forEach( (value) => {
-                delete value['password'];
-                delete value['phone'];
-                delete value['address'];
-            });
-            res.send(docs);
-        }
-    );
+        );
+    } else {
+        // console.log('getting user with query: ' + query.search);
+        Users.findByName(
+            query.search,
+            (err, docs) => {
+                if (err) {
+                    return res.sendStatus(500);
+                }
+                docs.forEach((value) => {
+                    delete value['password'];
+                });
+                res.send({
+                    rows: docs,
+                    total: docs.length
+                });
+            }
+        );
+    }
 };
 
 exports.findById = (req, res) => {

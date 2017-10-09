@@ -182,40 +182,30 @@ $(document).ready(function () {
 
     function listUsers() {
         systemSettings.innerHTML =
-            '<table class="table table-striped table-hover">\n' +
-                '<thead class="thead-default">' +
+            '<table id="table"' +
+                'data-toggle="table"' +
+                // 'data-height="362"' +
+                'data-height="364"' +
+                'data-url="api/v1/users"' +
+                'data-search="true"' +
+                'data-side-pagination="server"' +
+                'data-pagination="true"' +
+                'data-page-list="[5, 10, 20, 50]"' +
+                '>' +
+                '<thead>' +
                     '<tr>' +
-                        '<th>#</th>' +
-                        '<th>Username</th>' +
-                        '<th>E-mail</th>' +
-                        '<th>Added At</th>' +
-                        '<th>Role</th>' +
+                        // '<th data-field="_id">#</th>' +
+                        '<th data-field="username" data-sortable="true">Name</th>' +
+                        '<th data-field="email" data-sortable="true">E-mail</th>' +
+                        '<th data-field="addedAt" data-sortable="true">Added At</th>' +
+                        '<th data-field="role" data-sortable="true">Role</th>' +
                     '</tr>' +
                 '</thead>' +
-                '<tbody >' +
-                    '<tr class="danger">' +
-                        '<td>1</td>' +
-                        '<td>Defaultson</td>' +
-                        '<td>def@somemail.com</td>' +
-                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
-                        '<td>ADMIN</td>' +
-                    '</tr>' +
-                    '<tr class="success">' +
-                        '<td>2</td>' +
-                        '<td>Doe</td>' +
-                        '<td>john@example.com</td>' +
-                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
-                        '<td>ADMIN</td>' +
-                    '</tr>' +
-                    '<tr class="info">' +
-                        '<td>3</td>' +
-                        '<td>Moe</td>' +
-                        '<td>mary@example.com</td>' +
-                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
-                        '<td>ADMIN</td>' +
-                    '</tr>' +
-                '</tbody>' +
-            '</table>';
+            '</table>'
+            ;
+
+        var $table = $('#table');
+        $table.bootstrapTable();
     }
 });
 

@@ -20,6 +20,20 @@ exports.findById = (id, cb) => {
     );
 };
 
+exports.findByName = (id, cb) => {
+    db.get().collection('UsersCollection')
+        .find({
+            'username': {$regex: id, $options: 'i'}
+        })
+        .toArray(
+            (err, doc) => {
+                // console.log(doc);
+                cb(err, doc);
+            }
+        )
+    ;
+};
+
 exports.update = (id, newData, cb) => {
     db.get().collection('UsersCollection').updateOne(
         {_id: ObjectID(id) },

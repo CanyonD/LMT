@@ -144,3 +144,7 @@ body {
 .pagination > li {
     margin-left: 0px;
 }
+
+.dropdown-toggle {
+    width: 50px;
+}
