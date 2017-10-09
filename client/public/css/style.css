@@ -249,3 +249,15 @@ a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
 button:disabled {
     background: gray;
 }
+.nav-tabs {
+    margin-bottom: 5px;
+}
+th {
+    font-weight: bold;
+    text-align: center;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: center;
+}

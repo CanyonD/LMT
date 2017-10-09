@@ -3,6 +3,14 @@
 const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
 
+exports.all = (cb) => {
+    db.get().collection('UsersCollection').find().toArray(
+        (err, docs) => {
+            cb(err, docs);
+        }
+    );
+};
+
 exports.findById = (id, cb) => {
     db.get().collection('UsersCollection').findOne(
         {_id: ObjectID(id)},

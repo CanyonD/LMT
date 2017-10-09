@@ -188,8 +188,8 @@ module.exports = app => {
     // app.get('/api/v1/licenses/download/:id', customersController.all);
     // app.post('/api/v1/licenses/upload/:id', customersController.all);
 
+    app.get('/api/v1/users', usersController.all);
     app.get('/api/v1/users/:id', usersController.findById);
     app.put('/api/v1/users/:id', usersController.update);
-
     app.put('/api/v1/security/:id', usersController.changePassword);
 };

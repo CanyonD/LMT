@@ -35,6 +35,10 @@ $(document).ready(function () {
             passwordUserForm();
             $('input#_id').val( user_guid );
         }
+
+        if (id === 'list-users') {
+            listUsers();
+        }
     });
 
 
@@ -116,7 +120,7 @@ $(document).ready(function () {
 
     function passwordUserForm() {
         systemSettings.innerHTML =
-            '<div class="function-title">Change password for user:</div>' +
+            '<div class="function-title">Change password for current user:</div>' +
                 '<div class="function-settings" id="function-settings">' +
                     '<div class="panel panel-default">' +
                         '<div class="panel-body form-horizontal payment-form">' +
@@ -174,6 +178,44 @@ $(document).ready(function () {
                 });
             }
         });
+    }
+
+    function listUsers() {
+        systemSettings.innerHTML =
+            '<table class="table table-striped table-hover">\n' +
+                '<thead class="thead-default">' +
+                    '<tr>' +
+                        '<th>#</th>' +
+                        '<th>Username</th>' +
+                        '<th>E-mail</th>' +
+                        '<th>Added At</th>' +
+                        '<th>Role</th>' +
+                    '</tr>' +
+                '</thead>' +
+                '<tbody >' +
+                    '<tr class="danger">' +
+                        '<td>1</td>' +
+                        '<td>Defaultson</td>' +
+                        '<td>def@somemail.com</td>' +
+                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
+                        '<td>ADMIN</td>' +
+                    '</tr>' +
+                    '<tr class="success">' +
+                        '<td>2</td>' +
+                        '<td>Doe</td>' +
+                        '<td>john@example.com</td>' +
+                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
+                        '<td>ADMIN</td>' +
+                    '</tr>' +
+                    '<tr class="info">' +
+                        '<td>3</td>' +
+                        '<td>Moe</td>' +
+                        '<td>mary@example.com</td>' +
+                        '<td>'+ new Date().toLocaleDateString() +'</td>' +
+                        '<td>ADMIN</td>' +
+                    '</tr>' +
+                '</tbody>' +
+            '</table>';
     }
 });
 

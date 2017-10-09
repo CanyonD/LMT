@@ -3,6 +3,22 @@
 const Users = require('../models/users');
 const bcrypt = require('bcryptjs');
 
+exports.all = (req, res) => {
+    Users.all(
+        (err, docs) => {
+            if (err) {
+                return res.sendStatus(500);
+            }
+            docs.forEach( (value) => {
+                delete value['password'];
+                delete value['phone'];
+                delete value['address'];
+            });
+            res.send(docs);
+        }
+    );
+};
+
 exports.findById = (req, res) => {
     Users.findById(
         req.params.id,
