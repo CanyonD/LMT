@@ -5,14 +5,60 @@ const Customers = require('../models/customers');
 // var logController = require('../controllers/log');
 
 exports.all = (req, res) => {
-    Customers.all(
-        (err, docs) => {
-            if (err) {
-                return res.sendStatus(500);
+    let query = req.query,
+        sort,
+        filter;
+    // console.log( query );
+    if (query.sort !== null && query.sort !== '' && typeof query.sort === 'undefined') {
+        sort = {'name': 1};
+    } else {
+        sort = {};
+    }
+
+    if (query.filter !== null && query.filter !== '' && typeof query.filter === 'undefined') {
+        filter = {'status': 0};
+    } else {
+        filter = {'status': 1};
+    }
+
+    if (
+        query.search !== null && query.search !== '' && typeof query.search === 'undefined'
+    ) {
+        Customers.all(
+            sort,
+            filter,
+            (err, docs) => {
+                if (err) {
+                    return res.sendStatus(500);
+                }
+                docs.forEach((value) => {
+                    delete value['password'];
+                });
+                res.send({
+                    rows: docs,
+                    total: docs.length
+                });
             }
-            res.send(docs);
-        }
-    );
+        );
+    } else {
+        // console.log('getting user with query: ' + query.search);
+        Customers.findByName(
+            query.search,
+            (err, docs) => {
+                if (err) {
+                    return res.sendStatus(500);
+                }
+                docs.forEach((value) => {
+                    delete value['password'];
+                });
+                res.send({
+                    rows: docs,
+                    total: docs.length
+                });
+            }
+        );
+    }
+
 };
 
 exports.findById = (req, res) => {

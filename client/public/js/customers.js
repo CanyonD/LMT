@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let customersList = document.getElementById("customers-list");
 
-    function refreshList(search = null) {
+    function refreshList(search = null, sort = null, filter = null) {
         customersList.innerHTML = '';
         let customerItemStyle = (value) => {
             let customer_code = value.customer_code === '' ? String.fromCharCode(160) : value.customer_code,
@@ -36,18 +36,17 @@ $(document).ready(function () {
                         '</p>' +
                     '</a>';
         };
+
+        let url = '/api/v1/customers?';
+        url += search !== null ? 'search=' + search : '';
+        url += sort !== null ? '&sort=' + sort : '';
+        url += filter !== null ? '&filter=' + filter : '';
         $.ajax({
-            url: '/api/v1/customers',
+            url: url,
             dataType:'json',
             success: (names) => {
-                names.forEach( (item) => {
-                    if (search === null) {
-                        customersList.innerHTML += customerItemStyle(item);
-                    } else {
-                        if ( item.name.indexOf(search) > -1 ) {
-                            customersList.innerHTML += customerItemStyle(item);
-                        }
-                    }
+                names.rows.forEach( (item) => {
+                    customersList.innerHTML += customerItemStyle(item);
                 });
                 let current_id = $('input#_id').val();
                 if (current_id !== null && current_id !== '') {
@@ -183,4 +182,48 @@ $(document).ready(function () {
     $('.add-new-item-button').click(() => {
         $('input').val('');
     });
+
+    $('.btn-filter-new').click(() => {
+        const that = $('.btn-filter-new');
+        if (that.hasClass('active')) {
+            that.removeClass("active");
+        } else {
+            that.addClass("active");
+        }
+    });
+
+    $('.btn-filter-without').click(() => {
+        const that = $('.btn-filter-without');
+        if (that.hasClass('active')) {
+            that.removeClass("active");
+        } else {
+            that.addClass("active");
+        }
+    });
+
+    $('.btn-filter-active').click(() => {
+        const that = $('.btn-filter-active');
+        if (that.hasClass('active')) {
+            that.removeClass("active");
+        } else {
+            that.addClass("active");
+        }
+    });
+
+    $('.btn-filter-trash').click(() => {
+        let search = $('.search-field').val();
+        if (search.length > 1) {
+            refreshList(search, null, 1);
+        } else if (search === '') {
+            refreshList(null, null, 1);
+        }
+        const that = $('.btn-filter-trash');
+        if (that.hasClass('active')) {
+            that.removeClass("active");
+        } else {
+            that.addClass("active");
+        }
+    });
+
+
 });

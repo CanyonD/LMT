@@ -3,12 +3,29 @@
 const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
 
-exports.all = (cb) => {
-    db.get().collection('customers').find().toArray(
+exports.all = (sort, filter, cb) => {
+    db.get().collection('customers')
+        .find(filter)
+        .sort(sort)
+        .toArray(
         (err, docs) => {
             cb(err, docs);
         }
     );
+};
+
+exports.findByName = (id, cb) => {
+    db.get().collection('customers')
+        .find({
+            'name': {$regex: id, $options: 'i'}
+        })
+        .toArray(
+            (err, doc) => {
+                // console.log(doc);
+                cb(err, doc);
+            }
+        )
+    ;
 };
 
 exports.findById = (id, cb) => {

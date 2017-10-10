@@ -54,6 +54,7 @@ body {
 }
 .global-menu-item {
     margin-bottom: 0;
+    margin-top: 0;
     font-weight: bold;
 }
 
@@ -147,4 +148,8 @@ body {
 
 .dropdown-toggle {
     width: 50px;
+}
+
+.btn:active, .btn.active {
+    font-weight: bold;
 }
