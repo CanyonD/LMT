@@ -4,7 +4,10 @@ const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
 
 exports.all = (cb) => {
-    db.get().collection('functions').find().toArray(
+    db.get().collection('functions')
+        .find()
+        .sort({'name':1})
+        .toArray(
         (err, docs) => {
             cb(err, docs);
         }
