@@ -1,64 +1,48 @@
 "use strict";
 
+const ObjectID = require('mongodb').ObjectID;
 const Customers = require('../models/customers');
-// var log = require('../logger')(module);
-// var logController = require('../controllers/log');
+const queryToMongo = require('query-to-mongo');
 
-exports.all = (req, res) => {
-    let query = req.query,
-        sort,
-        filter;
-    // console.log( query );
-    if (query.sort !== null && query.sort !== '' && typeof query.sort === 'undefined') {
-        sort = {'name': 1};
-    } else {
-        sort = {};
+exports.find = (req, res) => {
+    let query = queryToMongo(req.query);
+    // console.log('req.query: ',req.query);
+    if (typeof query.criteria._id !== 'undefined' && query.criteria._id !== null && query.criteria._id !== '') {
+        query.criteria._id = ObjectID(query.criteria._id);
     }
-
-    if (query.filter !== null && query.filter !== '' && typeof query.filter === 'undefined') {
-        filter = {'status': 0};
-    } else {
-        filter = {'status': 1};
+    if (typeof query.criteria.search !== 'undefined' && query.criteria.search !== null && query.criteria.search !== '') {
+        query.criteria.name = {
+                $regex: String(query.criteria.search),
+                $options: 'i'
+        };
+        delete query.criteria.search;
     }
-
-    if (
-        query.search !== null && query.search !== '' && typeof query.search === 'undefined'
-    ) {
-        Customers.all(
-            sort,
-            filter,
-            (err, docs) => {
-                if (err) {
-                    return res.sendStatus(500);
-                }
-                docs.forEach((value) => {
-                    delete value['password'];
-                });
-                res.send({
-                    rows: docs,
-                    total: docs.length
-                });
+    if (typeof query.criteria.licenses !== 'undefined' || query.criteria.licenses === null || query.criteria.licenses === '') {
+        query.criteria.licenses = {
+            $size: 0
+        };
+    }
+    if (typeof query.criteria._id !== 'undefined' && query.criteria._id !== null && query.criteria._id !== '') {
+        query.criteria._id = ObjectID(query.criteria._id);
+    }
+    // console.log('criteria>>  ',query.criteria);
+    // console.log('options>>  ',query.options);
+    Customers.find(
+        query.criteria,
+        query.options,
+        (err, docs) => {
+            if (err) {
+                return res.sendStatus(500);
             }
-        );
-    } else {
-        // console.log('getting user with query: ' + query.search);
-        Customers.findByName(
-            query.search,
-            (err, docs) => {
-                if (err) {
-                    return res.sendStatus(500);
-                }
-                docs.forEach((value) => {
-                    delete value['password'];
-                });
-                res.send({
-                    rows: docs,
-                    total: docs.length
-                });
-            }
-        );
-    }
-
+            docs.forEach((value) => {
+                delete value['password'];
+            });
+            res.send({
+                rows: docs,
+                total: docs.length
+            });
+        }
+    );
 };
 
 exports.findById = (req, res) => {

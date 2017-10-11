@@ -176,9 +176,9 @@ module.exports = app => {
     app.put('/api/v1/functions/:id', functionsController.update);
     // app.delete('/api/v1/functions/:id', functionsController.delete);
 
-    app.get('/api/v1/customers', customersController.all);
+    app.get('/api/v1/customers', customersController.find);
     app.post('/api/v1/customers', customersController.create);
-    app.get('/api/v1/customers/:id', customersController.findById);
+    // app.get('/api/v1/customers/:id', customersController.findById);
     app.put('/api/v1/customers/:id', customersController.update);
     // app.delete('/api/v1/customers/:id', functionsController.delete);
 

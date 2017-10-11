@@ -152,4 +152,9 @@ body {
 
 .btn:active, .btn.active {
     font-weight: bold;
+    /*opacity: 1;*/
+}
+
+[class^='btn-filter-'], [class*=' btn-filter-'] {
+    /*opacity: 0.6;*/
 }

@@ -3,10 +3,9 @@
 const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
 
-exports.all = (sort, filter, cb) => {
+exports.find = (criteria, options, cb) => {
     db.get().collection('customers')
-        .find(filter)
-        .sort(sort)
+        .find(criteria, options)
         .toArray(
         (err, docs) => {
             cb(err, docs);

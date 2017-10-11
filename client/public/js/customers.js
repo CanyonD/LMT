@@ -1,16 +1,18 @@
 $(document).ready(function () {
     let customersList = document.getElementById("customers-list");
 
-    function refreshList(search = null, sort = null, filter = null) {
+    function refreshList(search = null, filter = null) {
         customersList.innerHTML = '';
         let customerItemStyle = (value) => {
             let customer_code = value.customer_code === '' ? String.fromCharCode(160) : value.customer_code,
                 status_icon,
                 status_text;
-
             if (value.status === 1) {
                 status_icon = 'danger';
                 status_text = 'Trash';
+            } else if (value.licenses.length === 0) {
+                status_icon = 'warning';
+                status_text = 'Empty';
             } else if (value.addedAt < (Date.now() + 360)) {
                 status_icon = 'success';
                 status_text = 'New';
@@ -18,7 +20,6 @@ $(document).ready(function () {
                 status_icon = 'primary';
                 status_text = 'Active';
             }
-
             return  '<a href="#" class="list-group-item" id="customer-list-id-' + value._id + '" itemscope="">' +
                         '<h5 class="list-group-item-heading">' +
                             '<span class="label label-' + status_icon + '" itemprop="status">' +
@@ -39,8 +40,29 @@ $(document).ready(function () {
 
         let url = '/api/v1/customers?';
         url += search !== null ? 'search=' + search : '';
-        url += sort !== null ? '&sort=' + sort : '';
-        url += filter !== null ? '&filter=' + filter : '';
+        url += '&sort=name';
+        let now = new Date();
+        if (filter !== null) {
+            switch (filter) {
+                case 1:         // TRASH
+                    url += '&status=1';
+                    break;
+                case 2:         // EMPTY
+                    url += '&licenses=';
+                    break;
+                case 3:         // ACTIVE
+                    url += '&status=0';
+                    break;
+                case 4:         // NEW
+                    url += '&addedAt>' + new Date(now.setDate(now.getDate() - 7)).getTime();
+                    break;
+                default:
+                    url += '&status=0';
+            }
+        } else {
+            url += '&status=0';
+        }
+
         $.ajax({
             url: url,
             dataType:'json',
@@ -57,6 +79,7 @@ $(document).ready(function () {
 
     };
     refreshList();
+    $('.btn-filter-active').addClass('active');
 
     $(customersList).click('click',(e) => {
         $("#customers-list").find('*').removeClass("active");
@@ -75,17 +98,18 @@ $(document).ready(function () {
         console.log(id);
         if (id) {
             $.ajax({
-                url: '/api/v1/customers/' + id,
+                url: '/api/v1/customers?_id=' + id,
                 dataType:'json',
                 success: (res) => {
-                    $('input#_id').val( res._id );
-                    $('input#name').val( res.name );
-                    $('input#description').val( res.description );
-                    $('input#email').val( res.email );
-                    $('input#phone').val( res.phone );
-                    $('input#address').val( res.address );
-                    $('input#customer_code').val( res.customer_code );
-                    if (res.status === 1)
+                    let values = res.rows[0];
+                    $('input#_id').val( values._id );
+                    $('input#name').val( values.name );
+                    $('input#description').val( values.description );
+                    $('input#email').val( values.email );
+                    $('input#phone').val( values.phone );
+                    $('input#address').val( values.address );
+                    $('input#customer_code').val( values.customer_code );
+                    if (values.status === 1)
                         $('.function-trash-button').html('Restore from trash');
                     else
                         $('.function-trash-button').html('Move to trash');
@@ -183,7 +207,21 @@ $(document).ready(function () {
         $('input').val('');
     });
 
+    function disabledFilters() {
+        $('.btn-filter-new').removeClass('active');
+        $('.btn-filter-without').removeClass('active');
+        $('.btn-filter-active').removeClass('active');
+        $('.btn-filter-trash').removeClass('active');
+    };
+
     $('.btn-filter-new').click(() => {
+        disabledFilters();
+        let search = $('.search-field').val();
+        if (search.length > 1) {
+            refreshList(search, 4);
+        } else if (search === '') {
+            refreshList(null, 4);
+        }
         const that = $('.btn-filter-new');
         if (that.hasClass('active')) {
             that.removeClass("active");
@@ -193,6 +231,13 @@ $(document).ready(function () {
     });
 
     $('.btn-filter-without').click(() => {
+        disabledFilters();
+        let search = $('.search-field').val();
+        if (search.length > 1) {
+            refreshList(search, 2);
+        } else if (search === '') {
+            refreshList(null, 2);
+        }
         const that = $('.btn-filter-without');
         if (that.hasClass('active')) {
             that.removeClass("active");
@@ -202,6 +247,13 @@ $(document).ready(function () {
     });
 
     $('.btn-filter-active').click(() => {
+        disabledFilters();
+        let search = $('.search-field').val();
+        if (search.length > 1) {
+            refreshList(search, 3);
+        } else if (search === '') {
+            refreshList(null, 3);
+        }
         const that = $('.btn-filter-active');
         if (that.hasClass('active')) {
             that.removeClass("active");
@@ -211,11 +263,12 @@ $(document).ready(function () {
     });
 
     $('.btn-filter-trash').click(() => {
+        disabledFilters();
         let search = $('.search-field').val();
         if (search.length > 1) {
-            refreshList(search, null, 1);
+            refreshList(search, 1);
         } else if (search === '') {
-            refreshList(null, null, 1);
+            refreshList(null, 1);
         }
         const that = $('.btn-filter-trash');
         if (that.hasClass('active')) {
