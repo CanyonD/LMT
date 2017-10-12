@@ -13,9 +13,9 @@ $(document).ready(function () {
     $.ajax({
         url: '/api/v1/functions',
         dataType:'json',
-        success: (names) => {
-            tmpValues = names;
-            names.forEach( (item) => {
+        success: (res) => {
+            let names = res.rows;
+            names.forEach( (item ) => {
                 functionsList.innerHTML += functionItemStyle(item);
             });
         }

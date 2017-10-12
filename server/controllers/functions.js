@@ -12,7 +12,10 @@ exports.all = (req, res) => {
                 // log.error(err);
                 return res.sendStatus(500);
             }
-            res.send(docs);
+            res.send({
+                rows: docs,
+                total: docs.length
+            });
         }
     );
 };

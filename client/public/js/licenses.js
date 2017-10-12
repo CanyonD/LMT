@@ -113,21 +113,16 @@ $(document).ready(function () {
         functionsList.innerHTML =
             '<table id="table"' +
             'data-toggle="table"' +
-            // 'data-height="362"' +
-            'data-height="364"' +
-            'data-url="api/v1/users"' +
-            'data-search="true"' +
+            'data-height="394"' +
+            'data-url="api/v1/functions"' +
             'data-side-pagination="server"' +
-            'data-pagination="true"' +
-            'data-page-list="[5, 10, 20, 50]"' +
             '>' +
             '<thead>' +
             '<tr>' +
-            // '<th data-field="_id">#</th>' +
-            '<th data-field="username" data-sortable="true">Name</th>' +
-            '<th data-field="email" data-sortable="true">E-mail</th>' +
-            '<th data-field="addedAt" data-sortable="true">Added At</th>' +
-            '<th data-field="role" data-sortable="true">Role</th>' +
+            '<th data-field="state" data-checkbox="true"></th>' +
+            // '<th data-field="_id" data-sortable="true">Id</th>' +
+            '<th data-field="name" data-sortable="true">Name</th>' +
+            '<th data-field="default" data-sortable="true">Value</th>' +
             '</tr>' +
             '</thead>' +
             '</table>'
