@@ -76,7 +76,7 @@
 
     <div class="grid_8">
         <div class="function-settings" id="function-settings">
-            <a href="#" class="list-group-item" id="license-list-id-' + value._id + '" itemscope="">
+            <a href="#" class="list-group-item current-item" id="license-list-id-' + value._id + '" itemscope="">
                 <h5 class="list-group-item-heading">
                     <span class="label label-success" itemprop="status">
                         status_text
@@ -95,13 +95,12 @@
                 </p>
             </a>
         </div>
-        <br>
         <div class="function-settings" id="function-settings1">
-            <div class="panel panel-default">
+            <div class="panel">
                 <div class="panel-body form-horizontal payment-form">
                     <input type="text" id="_id" name="_id" hidden>
                     <label style="text-align: center; display: block;">
-                        <h5>Validity of the license:</h5>
+                        <h6>Validity of the license:</h6>
                     </label>
                     <div class="form-group">
                         <label for="from" class="col-sm-3 control-label">From</label>
@@ -116,7 +115,7 @@
                         </div>
                     </div>
                     <label style="text-align: center; display: block;">
-                        <h5>List of functions for the license:</h5>
+                        <h6>List of functions for the license:</h6>
                     </label>
 
                     <div class="functions-list" id="functions-list">
