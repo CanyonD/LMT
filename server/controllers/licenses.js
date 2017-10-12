@@ -1,14 +1,32 @@
 "use strict";
 
+const ObjectID = require('mongodb').ObjectID;
 const Licenses = require('../models/licenses');
+const Customers = require('../models/customers');
+const queryToMongo = require('query-to-mongo');
+const async = require('async');
 
-exports.all = (req, res) => {
-    Licenses.all(
+exports.find = (req, res) => {
+    let query = queryToMongo(req.query);
+    // console.log('req.query: ',req.query);
+    if (typeof query.criteria._id !== 'undefined' && query.criteria._id !== null && query.criteria._id !== '') {
+        query.criteria._id = ObjectID(query.criteria._id);
+    }
+
+    Licenses.find(
+        query.criteria,
+        query.options,
         (err, docs) => {
             if (err) {
                 return res.sendStatus(500);
             }
-            res.send(docs);
+            docs.forEach((value) => {
+                // console.log(value);
+            });
+            res.send({
+                rows: docs,
+                total: docs.length
+            });
         }
     );
 };

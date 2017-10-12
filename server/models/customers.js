@@ -7,10 +7,10 @@ exports.find = (criteria, options, cb) => {
     db.get().collection('customers')
         .find(criteria, options)
         .toArray(
-        (err, docs) => {
-            cb(err, docs);
-        }
-    );
+            (err, docs) => {
+                cb(err, docs);
+            }
+        );
 };
 
 exports.findByName = (id, cb) => {

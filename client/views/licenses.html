@@ -6,11 +6,13 @@
 
     <script src="/public/js/jquery.js"></script>
     <script src="/public/js/bootstrap.js"></script>
+    <script src="/public/js/bootstrap-table.js"></script>
     <script src="/assets/js/licenses.js"></script>
     <script src="/assets/js/common.js"></script>
     <script src="/public/js/flatpickr.js"></script>
 
     <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/bootstrap-table.css">
     <link rel="stylesheet" href="/assets/css/960/reset.css" />
     <link rel="stylesheet" href="/assets/css/960/text.css" />
     <link rel="stylesheet" href="/assets/css/960/960.css" />
@@ -48,7 +50,7 @@
             </span>
         </div>
         <div class="list-group" id="licenses-list"></div>
-        <button type="button" class="btn btn-warning btn-add-item add-new-item-button">Add</button>
+        <!--<button type="button" class="btn btn-warning btn-add-item add-new-item-button">Add</button>-->
         <ul class="pagination justify-content-center">
             <li class="disabled">
                   <span>
@@ -70,10 +72,59 @@
                 </a>
             </li>
         </ul>
-
     </div>
 
+    <div class="grid_8">
+        <div class="function-settings" id="function-settings">
+            <a href="#" class="list-group-item" id="license-list-id-' + value._id + '" itemscope="">
+                <h5 class="list-group-item-heading">
+                    <span class="label label-success" itemprop="status">
+                        status_text
+                    </span>
+                    <span class="text-center" itemprop="name">
+                        value.customer_name
+                    </span>
+                </h5>
+                <p class="list-group-item-text">
+                    <span class="badge" itemprop="id" title="value._id.toUpperCase()">
+                        GUID
+                    </span>
+                    <span itemprop="customer_code">
+                        customer_code
+                    </span>
+                </p>
+            </a>
+        </div>
+        <br>
+        <div class="function-settings" id="function-settings1">
+            <div class="panel panel-default">
+                <div class="panel-body form-horizontal payment-form">
+                    <input type="text" id="_id" name="_id" hidden>
+                    <label style="text-align: center; display: block;">
+                        <h5>Validity of the license:</h5>
+                    </label>
+                    <div class="form-group">
+                        <label for="from" class="col-sm-3 control-label">From</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="from" name="from">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="to" class="col-sm-3 control-label">To</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="to" name="to">
+                        </div>
+                    </div>
+                    <label style="text-align: center; display: block;">
+                        <h5>List of functions for the license:</h5>
+                    </label>
 
+                    <div class="functions-list" id="functions-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
 
 </div>

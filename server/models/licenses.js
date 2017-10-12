@@ -3,12 +3,14 @@
 const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
 
-exports.all = (cb) => {
-    db.get().collection('licenses').find().toArray(
-        (err, docs) => {
-            cb(err, docs);
-        }
-    );
+exports.find = (criteria, options, cb) => {
+    db.get().collection('licenses')
+        .find(criteria, options)
+        .toArray(
+            (err, docs) => {
+                cb(err, docs);
+            }
+        );
 };
 
 exports.findById = (id, cb) => {

@@ -182,7 +182,7 @@ module.exports = app => {
     app.put('/api/v1/customers/:id', customersController.update);
     // app.delete('/api/v1/customers/:id', functionsController.delete);
 
-    app.get('/api/v1/licenses', licensesController.all);
+    app.get('/api/v1/licenses', licensesController.find);
     app.post('/api/v1/licenses', licensesController.create);
     app.get('/api/v1/licenses/:id', licensesController.findById);
     app.put('/api/v1/licenses/:id', licensesController.update);

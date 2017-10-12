@@ -8,17 +8,14 @@ $(document).ready(function () {
                 status_icon,
                 status_text,
                 now = new Date();
-            // console.log(new Date(value.addedAt));
-            // console.log(new Date(now.setDate(now.getDate() - 7)));
-            // console.log(new Date(value.addedAt) > new Date(now.setDate(now.getDate() - 7)));
 
             if (value.status === 1) {
                 status_icon = 'danger';
                 status_text = 'Trash';
-            } else if ( new Date(value.valid_until) < new Date(now) ) {
+            } else if ( new Date(value.valid_until*1000) < new Date(now) ) {
                 status_icon = 'warning';
                 status_text = 'Expired';
-            } else if ( new Date(value.addedAt) > new Date(now.setDate(now.getDate() - 7)) ) {
+            } else if ( new Date(value.addedAt*1000) > new Date(now.setDate(now.getDate() - 7)) ) {
                 status_icon = 'success';
                 status_text = 'New';
             } else {
@@ -38,7 +35,7 @@ $(document).ready(function () {
                         '<p class="list-group-item-text">' +
                             '<span class="badge" itemprop="id" title="' + value._id.toUpperCase() + '">GUID</span>' +
                             '<span itemprop="customer_code">' +
-                                new Date(value.valid_until).toLocaleDateString() +
+                                'until ' + new Date(value.valid_until*1000).toLocaleDateString() +
                             '</span>' +
                             '<br>' +
                             '<span itemprop="functions">' +
@@ -50,7 +47,8 @@ $(document).ready(function () {
         $.ajax({
             url: '/api/v1/licenses',
             dataType:'json',
-            success: (names) => {
+            success: (res) => {
+                let names = res.rows;
                 names.forEach( (item) => {
                     if (search === null) {
                         licensesList.innerHTML += licenseItemStyle(item);
@@ -70,6 +68,35 @@ $(document).ready(function () {
     };
     refreshList();
 
+    $(licensesList).click('click',(e) => {
+        $("#licenses-list").find('*').removeClass("active");
+        let id;
+        if (e.target.parentNode.id === '') {
+            $(e.target.parentNode.parentNode).addClass("active");
+            id = e.target.parentNode.parentNode.id;
+        } else if (e.target.id === '') {
+            $(e.target.parentNode).addClass("active");
+            id = e.target.parentNode.id;
+        } else {
+            $(e.target).addClass("active");
+            id = e.target.id;
+        }
+        id = id.split('license-list-id-')[1];
+        console.log(id);
+        if (id) {
+            $.ajax({
+                url: '/api/v1/licenses?_id=' + id,
+                dataType:'json',
+                success: (res) => {
+                    console.log(res);
+                },
+                error: () => {
+
+                }
+            });
+        }
+    });
+
 
     $('#to').flatpickr({
         dateFormat: "d-m-Y",
@@ -80,4 +107,36 @@ $(document).ready(function () {
         // mode: "range"
     });
 
+    let functionsList = document.getElementById("functions-list");
+
+    function listFunctions() {
+        functionsList.innerHTML =
+            '<table id="table"' +
+            'data-toggle="table"' +
+            // 'data-height="362"' +
+            'data-height="364"' +
+            'data-url="api/v1/users"' +
+            'data-search="true"' +
+            'data-side-pagination="server"' +
+            'data-pagination="true"' +
+            'data-page-list="[5, 10, 20, 50]"' +
+            '>' +
+            '<thead>' +
+            '<tr>' +
+            // '<th data-field="_id">#</th>' +
+            '<th data-field="username" data-sortable="true">Name</th>' +
+            '<th data-field="email" data-sortable="true">E-mail</th>' +
+            '<th data-field="addedAt" data-sortable="true">Added At</th>' +
+            '<th data-field="role" data-sortable="true">Role</th>' +
+            '</tr>' +
+            '</thead>' +
+            '</table>'
+        ;
+
+        var $table = $('#table');
+        $table.bootstrapTable();
+    }
+
+    console.log(functionsList);
+    listFunctions();
 });
